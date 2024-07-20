@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->year('year');
             $table->string('rated');
-            $table->datetime('released');
+            $table->string('released');
             $table->string('runtime');
             $table->string('genre');
             $table->string('director');
@@ -28,15 +28,16 @@ return new class extends Migration
             $table->string('awards');
             $table->string('poster');
             $table->json('ratings');
-            $table->integer('metascore');
-            $table->float('imdbRating');
-            $table->float('imdbVotes');
+            $table->string('metascore');
+            $table->string('imdbRating');
+            $table->string('imdbVotes');
             // $table->string('imdbID');
             $table->string('type');
             $table->string('DVD');
             $table->string('boxOffice');
             $table->string('production');
             $table->string('website');
+            $table->dateTime('lastAccessed')->default(now());
             $table->timestamps();
         });
     }

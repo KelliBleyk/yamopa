@@ -14,6 +14,11 @@ return [
     |
     */
 
+    'omdbapi' => [
+        'url' => env('OMDB_URL'),
+        'key' => env('OMDB_API_KEY')
+    ],
+    
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

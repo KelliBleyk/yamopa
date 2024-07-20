@@ -4,6 +4,6 @@
 
 - [x] Laravel
 - [x] MySQL
-- Redis
-- Vue.js
-- ElasticSearch
+- [ ] Redis
+- [ ] Vue.js
+- [ ] ElasticSearch
