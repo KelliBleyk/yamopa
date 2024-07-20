@@ -19,8 +19,8 @@
         @case('ratings')
             <div class="field ratings">Ratings:
                 @forelse ($fieldValue as $rating)
-                    <div class="rating" data-rating-source="{{ $rating['Source'] }}">{{ $rating['Source'] }}:
-                        {{ $rating['Value'] }}</div>
+                    <div class="rating" data-rating-source="{{ $rating['Source'] }}">
+                        {{ $rating['Source'] }}: {{ $rating['Value'] }}</div>
                 @empty
                     There're no ratings
                 @endforelse

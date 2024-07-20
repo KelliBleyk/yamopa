@@ -52,7 +52,14 @@ class MovieController extends Controller
 
     public function index()
     {
-        $movies = Movie::all()->toArray();
+        // $movies = Movie::all()->toArray();
+        $movies = Movie::whereNotNull('imdbID')->orderBy('created_at', 'desc')->take(5)->get()->toArray();
+
+        $search = request()->input('search', '');
+        
+        if ($search) {
+            $movies = Movie::where('title', 'like', "%$search")->orWhere('title', 'like', "$search%")->take(5)->get()->toArray();
+        }
 
         foreach ($movies as $movieKey => $movieValue) {
             $movies[$movieKey]['ratings'] = json_decode($movieValue['ratings'], true);
@@ -72,21 +79,29 @@ class MovieController extends Controller
     public function show(string $id)
     {
         $movie = Movie::select('*')->where('imdbID', '=', $id)->first();
-        
+
         if ($movie) {
             $movie = $movie->toArray();
         } else {
             $movie = static::parse($id);
-            
+
             $movie['created_at'] = now();
             $movie['updated_at'] = now();
-            
+
             Movie::insert($movie);
         }
-        
+
         $movie['ratings'] = json_decode($movie['ratings'], true);
 
         return view('app')
             ->with(['movies' => [$movie]]);
+    }
+
+    public function search(string $title)
+    {
+        $movies = Movie::select('*')->where('title', '%', $title);
+        
+        return view('app')
+            ->with(['movies' => $movies]);
     }
 }

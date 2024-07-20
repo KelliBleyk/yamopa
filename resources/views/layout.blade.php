@@ -1,5 +1,5 @@
 @php
-    $appName = "YAMoPa";    
+    $appName = 'YAMoPa';
 @endphp
 
 <!DOCTYPE html>
@@ -13,7 +13,10 @@
 </head>
 
 <body>
-    <header></header>
+    <header style="display: flex; align-items: center; justify-content: space-between;">
+        <h1><a href="/">Recently Searched Movies</a></h1>
+        @include('components.search')
+    </header>
     <main>@yield('content')</main>
     <footer></footer>
 </body>

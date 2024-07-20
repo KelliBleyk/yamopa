@@ -7,3 +7,4 @@ app()->setLocale('ru');
 
 Route::get('/', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
+// Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
